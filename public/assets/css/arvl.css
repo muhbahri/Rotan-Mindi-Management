@@ -1,0 +1,15 @@
+.cs-rl{
+   margin-bottom: 10px;
+}
+
+.cs-rl label{
+   margin-bottom: 4px;
+}
+
+.cs-rl input{
+   padding: 7px;
+}
+
+.cs-rl ::placeholder{
+   padding-left: 5px;
+}
