@@ -119,7 +119,11 @@ class HomeController extends Controller
 
 
         $order->save();
+<<<<<<< HEAD
         Alert::success('Berhasil', 'Pesanan Telah Berhasil Ditambahkan');
+=======
+        Alert::success('Berhasil', 'Produk Telah Berhasil Ditambahkan');
+>>>>>>> 95dd6bdbf1e0abb2bf6938fb7769c0ccf3876764
         return Redirect::to('/view_order')->with('success', 'Order updated successfully');
     }
 
@@ -162,7 +166,11 @@ class HomeController extends Controller
         }
 
         $order->save();
+<<<<<<< HEAD
         Alert::success('Berhasil', 'Pesanan Telah Berhasil Diedit');
+=======
+
+>>>>>>> 95dd6bdbf1e0abb2bf6938fb7769c0ccf3876764
         return Redirect::to('/view_order')->with('success', 'Order updated successfully');
     }
 

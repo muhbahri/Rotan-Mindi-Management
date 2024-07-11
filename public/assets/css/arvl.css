@@ -12,10 +12,13 @@
 .cs-rl input {
     padding: 7px;
     margin: 4px 16px;
+<<<<<<< HEAD
 }
 .cs-rl .message {
     padding: 2px;
     margin-left: 14px;
+=======
+>>>>>>> 95dd6bdbf1e0abb2bf6938fb7769c0ccf3876764
 }
 
 .cs-rl select {
@@ -92,6 +95,7 @@
     line-height: 1;
 }
 
+<<<<<<< HEAD
 .dropdown-menu {
     --bs-dropdown-link-active-bg: none;
 }
@@ -100,6 +104,12 @@
 .btn-secondary {
     border-radius: 10px;
     padding: 6px 20px;
+=======
+/* Gaya untuk dropdown button */
+.btn-secondary {
+    border-radius: 10px;
+    padding: 8px 20px;
+>>>>>>> 95dd6bdbf1e0abb2bf6938fb7769c0ccf3876764
     font-family: "Poppins", sans-serif; /* Menggunakan font Poppins */
     font-size: 14px; /* Sesuaikan ukuran font */
 }
@@ -362,6 +372,7 @@
 .form-group label, .form-group select, .form-group button {
     display: inline-block;
     margin-right: 10px;
+<<<<<<< HEAD
 }
 
 td {
@@ -370,4 +381,6 @@ td {
 td img {
     display: block;
     margin: 0 auto; 
+=======
+>>>>>>> 95dd6bdbf1e0abb2bf6938fb7769c0ccf3876764
 }

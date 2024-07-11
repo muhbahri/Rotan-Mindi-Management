@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Subcontractors;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
+<<<<<<< HEAD
 use RealRashid\SweetAlert\Facades\Alert;
+=======
+>>>>>>> 95dd6bdbf1e0abb2bf6938fb7769c0ccf3876764
 
 class ProductController extends Controller
 {
@@ -53,7 +56,11 @@ class ProductController extends Controller
     }
 
     $order->save();
+<<<<<<< HEAD
     Alert::success('Berhasil', 'Produk Telah Berhasil Ditambahkan');
+=======
+
+>>>>>>> 95dd6bdbf1e0abb2bf6938fb7769c0ccf3876764
     return Redirect::to('/view_product')->with('success', 'Product added successfully');
 }
 
@@ -84,7 +91,11 @@ public function update_product(Request $request, $id)
     }
 
     $product->save();
+<<<<<<< HEAD
     Alert::success('Berhasil', 'Produk Telah Berhasil Diedit');
+=======
+
+>>>>>>> 95dd6bdbf1e0abb2bf6938fb7769c0ccf3876764
     return Redirect::to('/view_product')->with('success', 'Order updated successfully');
 }
 

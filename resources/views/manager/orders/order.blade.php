@@ -162,6 +162,54 @@
             });
         });
     </script>
+<<<<<<< HEAD
+=======
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger"
+            },
+            buttonsStyling: false
+        });
+
+        function confirmation(event) {
+            event.preventDefault();
+            const urlToRedirect = event.currentTarget.getAttribute('href');
+
+            swalWithBootstrapButtons.fire({
+                title: "Yakin ingin menghapus data ini?",
+                text: "Data tidak dapat dikembalikan!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Ya, hapus!",
+                cancelButtonText: "Batal",
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Mengonfirmasi penghapusan
+                    swalWithBootstrapButtons.fire(
+                        'Dihapus!',
+                        'Data telah dihapus.',
+                        'Berhasil'
+                    ).then(() => {
+                        // Redirect setelah penghapusan dikonfirmasi
+                        window.location.href = urlToRedirect;
+                    });
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    // Batal menghapus
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        'Data batal dihapus :)',
+                        'error'
+                    );
+                }
+            });
+        }
+    </script>
+>>>>>>> 95dd6bdbf1e0abb2bf6938fb7769c0ccf3876764
 </body>
 
 </html>

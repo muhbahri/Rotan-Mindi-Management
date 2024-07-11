@@ -12,7 +12,10 @@
 </head>
 
 <body>
+<<<<<<< HEAD
     @include('sweetalert::alert')
+=======
+>>>>>>> 95dd6bdbf1e0abb2bf6938fb7769c0ccf3876764
     <div class="wrapper">
         @include('inventaris.sidebar')
 

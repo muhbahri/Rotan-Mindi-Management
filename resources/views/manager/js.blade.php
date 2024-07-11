@@ -107,6 +107,7 @@
     }
 </script>
 
+<<<<<<< HEAD
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         const swalWithBootstrapButtons = Swal.mixin({
@@ -151,3 +152,5 @@
             });
         }
     </script>
+=======
+>>>>>>> 95dd6bdbf1e0abb2bf6938fb7769c0ccf3876764

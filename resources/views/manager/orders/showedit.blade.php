@@ -35,7 +35,11 @@
                                         <div class="form-group cs-rl">
                                             <label for="product_name">Nama Barang</label>
                                             <select class="form-control" name="product_name" id="product_name" onchange="changeValue(this.value)">
+<<<<<<< HEAD
                                                 <option value="{{ $order->product_name }}">Pilih Produk</option>
+=======
+                                                <option value="">Pilih Produk</option>
+>>>>>>> 95dd6bdbf1e0abb2bf6938fb7769c0ccf3876764
                                                 @foreach ($product as $prod)
                                                     <option value="{{ $prod->product_name }}">{{ $prod->product_name }}</option>
                                                 @endforeach

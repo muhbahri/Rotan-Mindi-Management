@@ -3,18 +3,30 @@
 namespace App\Http\Controllers;
 
 use Log;
+<<<<<<< HEAD
 use Inertia\Inertia;
 use Inertia\Response;
+=======
+>>>>>>> 95dd6bdbf1e0abb2bf6938fb7769c0ccf3876764
 use App\Models\Orders;
 use Illuminate\Http\Request;
 use App\Models\Subcontractors;
 use Barryvdh\DomPDF\Facade\Pdf;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+=======
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Inertia\Inertia;
+use Inertia\Response;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+>>>>>>> 95dd6bdbf1e0abb2bf6938fb7769c0ccf3876764
 
 class InventarisController extends Controller
 {
@@ -72,6 +84,7 @@ class InventarisController extends Controller
     }
 
     public function update_pesanan(Request $request, $id)
+<<<<<<< HEAD
 {
     $request->validate([
         'product_name' => 'required|string',
@@ -113,6 +126,36 @@ class InventarisController extends Controller
 }
 
 
+=======
+    {
+        $order = Orders::find($id);
+        $order->product_name = $request->product_name;
+        $order->size = $request->ukuran;
+        $order->quantity = $request->kuantitas;
+        $order->price = $request->harga;
+        $order->total_price = $order->quantity * $order->price;
+        $order->deadline = $request->deadline;
+        $order->progress = $request->progress;
+        $order->subkontraktor_name = $request->subkontraktor;
+
+        // Update status to 'Selesai' if progress equals quantity
+        if ($request->progress == $request->kuantitas) {
+            $order->status = 'Selesai';
+        } 
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $image->move('order', $imagename);
+            $order->image = $imagename;
+        }
+
+        $order->save();
+
+        return Redirect::to('/show_order')->with('success', 'Order updated successfully');
+    }
+
+>>>>>>> 95dd6bdbf1e0abb2bf6938fb7769c0ccf3876764
     public function exportPDF(Request $request)
 {
     $query = Orders::query();
@@ -145,15 +188,20 @@ class InventarisController extends Controller
 {
     $messages = [
         'nama.required' => 'Nama subkontraktor harus diisi.',
+<<<<<<< HEAD
         'nama.string' => 'Nama subkontraktor harus berupa teks.',
         'nama.regex' => 'Nama subkontraktor harus hanya berisi huruf.',
         'kontak.required' => 'Kontak harus diisi.',
         'kontak.integer' => 'Kontak harus berupa angka.',
+=======
+        'kontak.required' => 'Kontak harus diisi.',
+>>>>>>> 95dd6bdbf1e0abb2bf6938fb7769c0ccf3876764
         'pekerja.required' => 'Jumlah pekerja harus diisi.',
         'pekerja.integer' => 'Jumlah pekerja harus berupa angka.',
         'bahan.required' => 'Stok bahan harus diisi.',
     ];
 
+<<<<<<< HEAD
     $validator = Validator::make($request->all(), [
         'nama' => ['required', 'string', 'regex:/^[a-zA-Z ]+$/u', 'max:255'],
         'kontak' => ['required','integer'],
@@ -165,6 +213,15 @@ class InventarisController extends Controller
         return redirect()->back()->withErrors($validator)->withInput();
     }
 
+=======
+    $request->validate([
+        'nama' => 'required',
+        'kontak' => 'required',
+        'pekerja' => 'required|integer',
+        'bahan' => 'required',
+    ], $messages);
+
+>>>>>>> 95dd6bdbf1e0abb2bf6938fb7769c0ccf3876764
     $subkontraktor = new Subcontractors();
     $subkontraktor->subkontraktor_name = $request->nama;
     $subkontraktor->contact = $request->kontak;
@@ -172,7 +229,11 @@ class InventarisController extends Controller
     $subkontraktor->stock = $request->bahan;
 
     $subkontraktor->save();
+<<<<<<< HEAD
     Alert::success('Berhasil', 'Subkontraktor Telah Berhasil Ditambahkan');
+=======
+
+>>>>>>> 95dd6bdbf1e0abb2bf6938fb7769c0ccf3876764
     return Redirect::to('/show_kontraktor')->with('success', 'Subkontraktor berhasil ditambahkan');
 }
 
@@ -186,6 +247,7 @@ class InventarisController extends Controller
     public function update_sub(Request $request, $id)
     {
         $messages = [
+<<<<<<< HEAD
             'nama.required' => 'Nama subkontraktor harus diisi.',
             'nama.string' => 'Nama subkontraktor harus berupa teks.',
             'nama.regex' => 'Nama subkontraktor harus hanya berisi huruf.',
@@ -207,6 +269,15 @@ class InventarisController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
     
+=======
+            'pekerja.integer' => 'Jumlah pekerja harus berupa angka.',
+        ];
+    
+        $request->validate([
+            'pekerja' => 'integer',
+        ], $messages);
+    
+>>>>>>> 95dd6bdbf1e0abb2bf6938fb7769c0ccf3876764
         $subkontraktor = new Subcontractors();
         $subkontraktor->subkontraktor_name = $request->nama;
         $subkontraktor->contact = $request->kontak;
@@ -214,7 +285,12 @@ class InventarisController extends Controller
         $subkontraktor->stock = $request->bahan;
     
         $subkontraktor->save();
+<<<<<<< HEAD
         Alert::success('Berhasil', 'Subkontraktor Telah Berhasil Diedit');
         return Redirect::to('/show_kontraktor')->with('success', 'Order updated successfully');
+=======
+
+        return Redirect::to('/show_order')->with('success', 'Order updated successfully');
+>>>>>>> 95dd6bdbf1e0abb2bf6938fb7769c0ccf3876764
     }
 }
