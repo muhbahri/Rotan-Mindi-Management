@@ -35,7 +35,7 @@
                                         <div class="form-group cs-rl">
                                             <label for="product_name">Nama Barang</label>
                                             <select class="form-control" name="product_name" id="product_name" onchange="changeValue(this.value)">
-                                                <option value="">Pilih Produk</option>
+                                                <option value="{{ $order->product_name }}">Pilih Produk</option>
                                                 @foreach ($product as $prod)
                                                     <option value="{{ $prod->product_name }}">{{ $prod->product_name }}</option>
                                                 @endforeach

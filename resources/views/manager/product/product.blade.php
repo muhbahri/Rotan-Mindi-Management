@@ -2,21 +2,13 @@
 <html lang="en">
 
     <head>
-        <style>
-            td {
-    text-align: center;
-}
-td img {
-    display: block;
-    margin: 0 auto; /* Untuk mengatur gambar agar terpusat secara horizontal */
-}
-
-        </style>
         @include('manager.css')
-
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     </head>
 
     <body>
+    @include('sweetalert::alert')
         <div class="wrapper">
             @include('manager.sidebar')
 

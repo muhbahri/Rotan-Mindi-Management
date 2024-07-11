@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <div class="wrapper">
         @include('inventaris.sidebar')
 

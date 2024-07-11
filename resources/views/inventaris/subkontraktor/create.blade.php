@@ -21,37 +21,48 @@
                                     <p class="title-page">Tambah Data SubKontraktor</p>
                                 </div>
                                 <div style="border-radius:20px">
-                                    @if ($errors->any())
-                                        <div class="alert alert-danger">
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
                                     <form class="forms-sample" action="{{ url('/add_subkontraktor') }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-group cs-rl">
                                             <label for="exampleInputEmail3">Nama</label>
-                                            <input type="text" class="form-control" name="nama" id="nama"
-                                                placeholder="Masukan Nama Sub Kontraktor">
+                                            <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" id="nama"
+                                                placeholder="Masukan Nama Sub Kontraktor" value="{{ old('nama') }}">
+                                            @error('nama')
+                                                <div class="invalid-feedback message">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="form-group cs-rl">
                                             <label for="exampleInputEmail3">Kontak</label>
-                                            <input type="tel" class="form-control" name="kontak" id="kontak"
-                                                placeholder="Masukan Kontak">
+                                            <input type="tel" class="form-control @error('kontak') is-invalid @enderror" name="kontak" id="kontak"
+                                                placeholder="Masukan Kontak" value="{{ old('kontak') }}">
+                                            @error('kontak')
+                                                <div class="invalid-feedback message">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="form-group cs-rl">
                                             <label for="exampleInputPassword4">Pekerja</label>
-                                            <input type="number" class="form-control" name="pekerja" id="pekerja"
-                                                placeholder="Masukan Jumlah Pekerja">
+                                            <input type="number" class="form-control @error('pekerja') is-invalid @enderror" name="pekerja" id="pekerja"
+                                                placeholder="Masukan Jumlah Pekerja" value="{{ old('pekerja') }}">
+                                            @error('pekerja')
+                                                <div class="invalid-feedback message">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="form-group cs-rl">
                                             <label for="exampleInputName1">Bahan Baku</label>
-                                            <input type="text" class="form-control" id="bahan" name="bahan"
-                                                placeholder="Masukan Jumlah Bahan Baku Tersedia">
+                                            <input type="text" class="form-control @error('bahan') is-invalid @enderror" id="bahan" name="bahan"
+                                                placeholder="Masukan Jumlah Bahan Baku Tersedia" value="{{ old('bahan') }}">
+                                            @error('bahan')
+                                                <div class="invalid-feedback message">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="btn-i">
                                             <button type="submit" class="btn btn-dark">Simpan</button>

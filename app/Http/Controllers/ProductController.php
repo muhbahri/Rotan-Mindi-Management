@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Subcontractors;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
 {
@@ -52,7 +53,7 @@ class ProductController extends Controller
     }
 
     $order->save();
-
+    Alert::success('Berhasil', 'Produk Telah Berhasil Ditambahkan');
     return Redirect::to('/view_product')->with('success', 'Product added successfully');
 }
 
@@ -83,7 +84,7 @@ public function update_product(Request $request, $id)
     }
 
     $product->save();
-
+    Alert::success('Berhasil', 'Produk Telah Berhasil Diedit');
     return Redirect::to('/view_product')->with('success', 'Order updated successfully');
 }
 

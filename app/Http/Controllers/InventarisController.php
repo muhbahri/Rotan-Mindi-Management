@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 
 use Log;
+use Inertia\Inertia;
+use Inertia\Response;
 use App\Models\Orders;
 use Illuminate\Http\Request;
 use App\Models\Subcontractors;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Inertia\Inertia;
-use Inertia\Response;
-use Illuminate\Support\Facades\Redirect;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class InventarisController extends Controller
 {
@@ -70,33 +72,46 @@ class InventarisController extends Controller
     }
 
     public function update_pesanan(Request $request, $id)
-    {
-        $order = Orders::find($id);
-        $order->product_name = $request->product_name;
-        $order->size = $request->ukuran;
-        $order->quantity = $request->kuantitas;
-        $order->price = $request->harga;
-        $order->total_price = $order->quantity * $order->price;
-        $order->deadline = $request->deadline;
-        $order->progress = $request->progress;
-        $order->subkontraktor_name = $request->subkontraktor;
+{
+    $request->validate([
+        'product_name' => 'required|string',
+        'ukuran' => 'required|string',
+        'kuantitas' => 'required|integer|min:1',
+        'harga' => 'required|integer|min:0',
+        'deadline' => 'required|date',
+        'progress' => 'required|integer|min:0|max:' . $request->kuantitas,
+        'subkontraktor' => 'required|string',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+    ], [
+        'progress.max' => 'Progress tidak boleh melebihi kuantitas!'
+    ]);
 
-        // Update status to 'Selesai' if progress equals quantity
-        if ($request->progress == $request->kuantitas) {
-            $order->status = 'Selesai';
-        } 
+    $order = Orders::find($id);
+    $order->product_name = $request->product_name;
+    $order->size = $request->ukuran;
+    $order->quantity = $request->kuantitas;
+    $order->price = $request->harga;
+    $order->total_price = $order->quantity * $order->price;
+    $order->deadline = $request->deadline;
+    $order->progress = $request->progress;
+    $order->subkontraktor_name = $request->subkontraktor;
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imagename = time() . '.' . $image->getClientOriginalExtension();
-            $image->move('order', $imagename);
-            $order->image = $imagename;
-        }
+    if ($request->progress == $request->kuantitas) {
+        $order->status = 'Selesai';
+    } 
 
-        $order->save();
-
-        return Redirect::to('/show_order')->with('success', 'Order updated successfully');
+    if ($request->hasFile('image')) {
+        $image = $request->file('image');
+        $imagename = time() . '.' . $image->getClientOriginalExtension();
+        $image->move('order', $imagename);
+        $order->image = $imagename;
     }
+
+    $order->save();
+    Alert::success('Berhasil', 'Pesanan Telah Berhasil Diedit');
+    return Redirect::to('/show_order')->with('success', 'Order updated successfully');
+}
+
 
     public function exportPDF(Request $request)
 {
@@ -130,18 +145,25 @@ class InventarisController extends Controller
 {
     $messages = [
         'nama.required' => 'Nama subkontraktor harus diisi.',
+        'nama.string' => 'Nama subkontraktor harus berupa teks.',
+        'nama.regex' => 'Nama subkontraktor harus hanya berisi huruf.',
         'kontak.required' => 'Kontak harus diisi.',
+        'kontak.integer' => 'Kontak harus berupa angka.',
         'pekerja.required' => 'Jumlah pekerja harus diisi.',
         'pekerja.integer' => 'Jumlah pekerja harus berupa angka.',
         'bahan.required' => 'Stok bahan harus diisi.',
     ];
 
-    $request->validate([
-        'nama' => 'required',
-        'kontak' => 'required',
-        'pekerja' => 'required|integer',
-        'bahan' => 'required',
+    $validator = Validator::make($request->all(), [
+        'nama' => ['required', 'string', 'regex:/^[a-zA-Z ]+$/u', 'max:255'],
+        'kontak' => ['required','integer'],
+        'pekerja' => ['required', 'integer'],
+        'bahan' => ['required'],
     ], $messages);
+
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors($validator)->withInput();
+    }
 
     $subkontraktor = new Subcontractors();
     $subkontraktor->subkontraktor_name = $request->nama;
@@ -150,7 +172,7 @@ class InventarisController extends Controller
     $subkontraktor->stock = $request->bahan;
 
     $subkontraktor->save();
-
+    Alert::success('Berhasil', 'Subkontraktor Telah Berhasil Ditambahkan');
     return Redirect::to('/show_kontraktor')->with('success', 'Subkontraktor berhasil ditambahkan');
 }
 
@@ -164,12 +186,26 @@ class InventarisController extends Controller
     public function update_sub(Request $request, $id)
     {
         $messages = [
+            'nama.required' => 'Nama subkontraktor harus diisi.',
+            'nama.string' => 'Nama subkontraktor harus berupa teks.',
+            'nama.regex' => 'Nama subkontraktor harus hanya berisi huruf.',
+            'kontak.required' => 'Kontak harus diisi.',
+            'kontak.integer' => 'Kontak harus berupa angka.',
+            'pekerja.required' => 'Jumlah pekerja harus diisi.',
             'pekerja.integer' => 'Jumlah pekerja harus berupa angka.',
+            'bahan.required' => 'Stok bahan harus diisi.',
         ];
     
-        $request->validate([
-            'pekerja' => 'integer',
+        $validator = Validator::make($request->all(), [
+            'nama' => ['required', 'string', 'regex:/^[a-zA-Z ]+$/u', 'max:255'],
+            'kontak' => ['required','integer'],
+            'pekerja' => ['required', 'integer'],
+            'bahan' => ['required'],
         ], $messages);
+    
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
     
         $subkontraktor = new Subcontractors();
         $subkontraktor->subkontraktor_name = $request->nama;
@@ -178,7 +214,7 @@ class InventarisController extends Controller
         $subkontraktor->stock = $request->bahan;
     
         $subkontraktor->save();
-
-        return Redirect::to('/show_order')->with('success', 'Order updated successfully');
+        Alert::success('Berhasil', 'Subkontraktor Telah Berhasil Diedit');
+        return Redirect::to('/show_kontraktor')->with('success', 'Order updated successfully');
     }
 }

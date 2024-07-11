@@ -119,7 +119,7 @@ class HomeController extends Controller
 
 
         $order->save();
-        Alert::success('Berhasil', 'Produk Telah Berhasil Ditambahkan');
+        Alert::success('Berhasil', 'Pesanan Telah Berhasil Ditambahkan');
         return Redirect::to('/view_order')->with('success', 'Order updated successfully');
     }
 
@@ -162,7 +162,7 @@ class HomeController extends Controller
         }
 
         $order->save();
-
+        Alert::success('Berhasil', 'Pesanan Telah Berhasil Diedit');
         return Redirect::to('/view_order')->with('success', 'Order updated successfully');
     }
 
@@ -172,7 +172,6 @@ class HomeController extends Controller
         File::delete(public_path('order' . '/' . $order->image));
 
         Orders::where('id', $id)->delete();
-        //Alert::success('Berhasil', 'Hapus Data Produk Berhasil');
         return redirect()->back()->with('success', 'Berhasil hapus data');
     }
 }
