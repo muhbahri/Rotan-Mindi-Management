@@ -1,6 +1,26 @@
-<!-- resources/views/layouts/app.blade.php -->
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
+
+<head>
+    @include('manager.css')
+    <style>
+        .profile-container {
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .profile-card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-header {
+            margin-bottom: 20px;
+        }
+    </style>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,23 +34,26 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white shadow">
-                    <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
+</head>
 
-            <!-- Page Content -->
+<body>
+    <div class="wrapper">
+        @include('manager.sidebar')
+
+        <div class="main">
+            @include('manager.navbar')
+
             <main>
-                {{ $slot }}
+                    @yield('content')
             </main>
+
+            <footer class="footer">
+                @include('manager.footer')
+            </footer>
         </div>
-    </body>
+    </div>
+
+    @include('manager.js')
+</body>
+
 </html>

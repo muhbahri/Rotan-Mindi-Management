@@ -1,15 +1,357 @@
-.cs-rl{
-   margin-bottom: 10px;
+.cs-rl {
+    margin-bottom: 10px;
+    padding-right: 38px;
 }
 
-.cs-rl label{
-   margin-bottom: 4px;
+.cs-rl label {
+    margin: 4px 16px;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
 }
 
-.cs-rl input{
-   padding: 7px;
+.cs-rl input {
+    padding: 7px;
+    margin: 4px 16px;
 }
 
-.cs-rl ::placeholder{
-   padding-left: 5px;
+.cs-rl select {
+    padding: 7px;
+    font-family: "Poppins", sans-serif;
+    padding-left: 16px;
+    margin: 4px 16px;
+}
+
+.cs-rl ::placeholder {
+    padding-left: 5px;
+}
+
+.icon-margin {
+    margin-right: 10px; /* Ubah nilai ini sesuai kebutuhan */
+}
+
+/* Menambahkan CSS untuk menggunakan font Poppins */
+/* Mengatur gaya untuk judul halaman */
+.title-page {
+    font-family: "Poppins", sans-serif; /* Menggunakan font Poppins */
+    font-weight: bold;
+    font-size: 24px; /* Sesuaikan ukuran font */
+    margin: 0;
+    padding-left: 16px;
+    padding-bottom: 6px;
+}
+.title-pag {
+    font-family: "Poppins", sans-serif; /* Menggunakan font Poppins */
+    font-weight: bold;
+    font-size: 24px; /* Sesuaikan ukuran font */
+    margin: 0;
+    color: #222e3c;
+}
+
+.card-title {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600; /* Menggunakan font Poppins */
+    color: #404040;
+    font-size: 16px;
+}
+
+.price h1 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    color: #404040;
+    margin-top: 10px;
+}
+
+/* chart */
+.chart-container {
+    position: relative;
+    width: 50%;
+}
+.legend-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 20px;
+}
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.legend-color {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+.icon-size {
+    font-size: 24px; /* Atur ukuran ikon sesuai kebutuhan */
+    line-height: 1;
+}
+
+/* Gaya untuk dropdown button */
+.btn-secondary {
+    border-radius: 10px;
+    padding: 8px 20px;
+    font-family: "Poppins", sans-serif; /* Menggunakan font Poppins */
+    font-size: 14px; /* Sesuaikan ukuran font */
+}
+.btn-tambah-data {
+    background-color: #6c757d;
+    border-radius: 10px;
+    padding: 8px 20px;
+    font-family: "Poppins", sans-serif; /* Menggunakan font Poppins */
+    font-size: 14px; /* Sesuaikan ukuran font */
+}
+
+.btn-edit {
+    color: #7d7d7d;
+    padding: 10px;
+}
+.btn-hapus {
+    color: #7d7d7d;
+}
+
+.btn-i {
+    padding-left: 16px;
+}
+
+.btn-abu {
+    background-color: #7d7d7d;
+    color: white;
+}
+
+.swal2-actions .swal2-confirm,
+.swal2-actions .swal2-cancel {
+    margin-right: 10px; /* Sesuaikan dengan ukuran jarak yang diinginkan */
+}
+
+.img-padding-left {
+    margin-left: 16px;
+}
+
+@media (max-width: 576px) {
+    .btn-secondary {
+        border-radius: 10px;
+        padding: 8px 54px;
+        font-family: "Poppins", sans-serif; /* Menggunakan font Poppins */
+        font-size: 11px; /* Sesuaikan ukuran font */
+    }
+    .btn-i {
+        flex-direction: column;
+        align-items: flex-start; /* Align items to the start */
+    }
+    .btn-i > * {
+        margin-bottom: 10px;
+        width: 100%; /* Ensure full width for each button */
+    }
+    .btn-i > *:last-child {
+        margin-bottom: 0;
+    }
+}
+
+/* Menyesuaikan ukuran tombol dropdown pada layar kecil */
+@media (max-width: 576px) {
+    .btn-secondary {
+        padding: 8px 15px; /* Sesuaikan dengan ukuran yang lebih kecil */
+        font-size: 12px; /* Ukuran font yang lebih kecil */
+    }
+}
+
+/* Mengatur ukuran judul halaman untuk layar kecil */
+@media (max-width: 576px) {
+    .title-page {
+        font-size: 20px; /* Ukuran font lebih kecil untuk layar kecil */
+        padding-left: 12px; /* Padding lebih sedikit */
+        padding-bottom: 4px; /* Padding lebih sedikit */
+    }
+}
+
+/* Penyesuaian pada dropdown filter dan tombol export */
+@media (max-width: 576px) {
+    .btn-i {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .btn-i > * {
+        margin-bottom: 8px;
+        width: 100%; /* Menggunakan full width untuk setiap elemen */
+    }
+    .btn-i > *:last-child {
+        margin-bottom: 0;
+    }
+}
+
+/* Mengatur tabel agar responsif dan terpusat */
+@media (max-width: 576px) {
+    .table th,
+    .table td {
+        padding: 10px; /* Padding lebih sedikit untuk layar kecil */
+    }
+    .table img {
+        max-width: 40px; /* Ukuran gambar lebih kecil untuk layar kecil */
+        max-height: 40px;
+    }
+}
+
+/* Sembunyikan kolom yang tidak perlu di layar kecil */
+@media (max-width: 576px) {
+    .hidden {
+        display: none !important; /* Gunakan !important untuk memastikan elemen tersembunyi */
+    }
+}
+
+/* Mengatur tabel agar responsive dan terpusat */
+.table {
+    width: 100%;
+    text-align: center;
+    font-family: "Poppins", sans-serif; /* Menggunakan font Poppins */
+}
+
+.table th,
+.table td {
+    padding: 12px 15px; /* Padding pada sel tabel */
+    vertical-align: middle;
+    color: #7d7d7d;
+}
+
+.table img {
+    max-width: 50px; /* Ukuran maksimum gambar */
+    max-height: 50px;
+}
+
+/* Sembunyikan kolom yang tidak perlu */
+.hidden {
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Mengubah warna latar belakang sidebar menjadi biru */
+.sidebar,
+.sidebar-content {
+    background-color: #2d2d2d !important; /* Warna biru */
+}
+
+.sidebar,
+.sidebar-item {
+    color: #2d2d2d;
+    text-decoration: none;
+}
+
+.sidebar .sidebar-nav .sidebar-item {
+    align-items: center; /* Vertically center the content */
+    height: 56px; /* Sesuaikan dengan tinggi yang diinginkan */
+}
+
+/* Mengubah warna teks sidebar menjadi putih agar kontras */
+.sidebar .sidebar-nav .sidebar-item .sidebar-link {
+    display: flex;
+    align-items: center; /* Vertically center the content */
+    color: #ffffff !important; /* Warna putih */
+    background-color: #2d2d2d !important; /* Warna latar belakang */
+    border-left: 4px solid transparent; /* Garis transparan pada sisi kiri */
+    border-top-right-radius: 8px; /* Membuat sudut membulat hanya pada kanan atas */
+    border-bottom-right-radius: 8px; /* Membuat sudut membulat hanya pada kanan bawah */
+    padding-left: 50px; /* Tambahan padding untuk menyesuaikan dengan garis */
+    height: 100%; /* Memastikan link memenuhi seluruh tinggi item */
+}
+
+/* Mengubah warna ikon di sidebar menjadi putih */
+.sidebar .sidebar-nav .sidebar-item .sidebar-link i {
+    color: #ffffff !important; /* Warna putih */
+}
+
+/* Mengubah warna item sidebar saat di-hover */
+.sidebar .sidebar-nav .sidebar-item .sidebar-link:hover {
+    background-color: #3b3b3b !important; /* Biru lebih gelap */
+    color: #ffffff !important; /* Warna putih */
+    border-left: 4px solid transparent; /* Garis transparan pada sisi kiri saat hover */
+}
+
+/* Mengubah warna item sidebar saat aktif */
+.sidebar .sidebar-nav .sidebar-item.active .sidebar-link {
+    background-color: #6c757d !important; /* Warna abu-abu untuk item yang aktif */
+    color: #ffffff !important; /* Warna putih */
+    border-left: 4px solid #007bff !important; /* Garis biru pada sisi kiri */
+    border-top-right-radius: 8px !important; /* Membuat sudut membulat hanya pada kanan atas */
+    border-bottom-right-radius: 8px !important; /* Membuat sudut membulat hanya pada kanan bawah */
+}
+
+.sidebar-logo {
+    width: 150px; /* Sesuaikan dengan ukuran yang diinginkan */
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Untuk menempatkan gambar di tengah */
+}
+
+/* chart calendar */
+.flatpickr-calendar.inline .flatpickr-day.selected,
+.flatpickr-calendar.inline .flatpickr-day.selected:focus,
+.flatpickr-calendar.inline .flatpickr-day.selected:hover {
+    background: #2d3436;
+    border-radius: 0.2rem;
+    color: #fff;
+}
+
+.flatpickr-day.endRange,
+.flatpickr-day.endRange.inRange,
+.flatpickr-day.endRange.nextMonthDay,
+.flatpickr-day.endRange.prevMonthDay,
+.flatpickr-day.endRange:focus,
+.flatpickr-day.endRange:hover,
+.flatpickr-day.selected,
+.flatpickr-day.selected.inRange,
+.flatpickr-day.selected.nextMonthDay,
+.flatpickr-day.selected.prevMonthDay,
+.flatpickr-day.selected:focus,
+.flatpickr-day.selected:hover,
+.flatpickr-day.startRange,
+.flatpickr-day.startRange.inRange,
+.flatpickr-day.startRange.nextMonthDay,
+.flatpickr-day.startRange.prevMonthDay,
+.flatpickr-day.startRange:focus,
+.flatpickr-day.startRange:hover {
+    background: #2d3436;
+    border-color: #2d3436;
+    box-shadow: none;
+    color: #fff;
+}
+
+.flatpickr-calendar.inline .flatpickr-day.today:before {
+    border-color: rgba(0, 0, 0, 0.2) transparent #2d3436;
+    border-style: solid;
+    border-width: 0 0 7px 7px;
+    bottom: 4px;
+    content: "";
+    display: inline-block;
+    position: absolute;
+    right: 4px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.pagination a, .pagination span {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+.pagination a.active {
+    background-color: #7d7d7d;
+    color: white;
+}
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group label, .form-group select, .form-group button {
+    display: inline-block;
+    margin-right: 10px;
 }
